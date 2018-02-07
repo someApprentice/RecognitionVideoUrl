@@ -26,5 +26,7 @@ You also have to make checkURL(...) and checkEmbed(...) methods return an array 
 3. ParserInterface
 4. AbstractResult
 
+These class will be automaticly added in your app
+
 ## Tests
 Just simple run `'vendor/bin/phpunit'` in your console
