@@ -1,0 +1,6 @@
+; In this file you may define any option that you need
+; For example your API key from YouTube
+; And don't forget remove .example extenstion from this file, if you want to that everything works!
+
+[YouTube]
+key = AIzaSsGU9P2euvVl2N7TSuCMT_adsy27-UOasfI

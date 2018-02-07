@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome to Recognizer!</title>
+    </head>
+    <body>
+        <h1>Video URL Recognizer</h1>
+
+        <form method="POST" action="/">
+            <input type="text" {% if data is defined %}value="{{ data }}"{% endif %} name="data">
+
+            <input type="submit" name="submit"> {% if error is defined %}<em style="color: red;">{{ error }}</em>{% endif %}
+        </form>
+
+    </body>
+</html>
