@@ -20,7 +20,7 @@ You may add a custom service by implementing following interfaces:
 
 1. CheckerInterface
 
-You also have to make checkURL(...) and checkEmbed(...) methods returns an array like ['hosting' => "NAME_OF_HOSTING", 'type' => "URL"] or ['hosting' => "NAME_OF_HOSTING", 'type' => "embed"] in dependency of method 
+You also have to make checkURL(...) and checkEmbed(...) methods return an array like ['hosting' => "NAME_OF_HOSTING", 'type' => "URL"] or ['hosting' => "NAME_OF_HOSTING", 'type' => "embed"] in dependency of the method 
 
 2. AbstractFactory
 3. ParserInterface
