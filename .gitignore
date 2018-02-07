@@ -7,3 +7,7 @@
 ###< symfony/framework-bundle ###
 
 /config/hosting_options.ini
+
+###> phpunit/phpunit ###
+/phpunit.xml
+###< phpunit/phpunit ###

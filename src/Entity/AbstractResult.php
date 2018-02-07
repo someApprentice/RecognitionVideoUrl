@@ -19,5 +19,9 @@ abstract class AbstractResult
 
     abstract public function setPreview(string $preview): AbstractResult;
 
+    abstract public function getErrors(): array;
+
+    abstract public function setErrors(array $errors = []): AbstractResult;
+
     abstract public function json(): string;
 }
