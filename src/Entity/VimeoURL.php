@@ -3,7 +3,7 @@ namespace RecognitionVideoUrl\Entity;
 
 use RecognitionVideoUrl\Entity\AbstractURL;
 
-class YouTubeURL extends AbstractURL
+class VimeoURL extends AbstractURL
 {
     protected $id;
 

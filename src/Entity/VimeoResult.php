@@ -3,7 +3,7 @@ namespace RecognitionVideoUrl\Entity;
 
 use RecognitionVideoUrl\Entity\AbstractResult;
 
-class YouTubeResult extends AbstractResult
+class VimeoResult extends AbstractResult
 {
     protected $title;
 
@@ -44,10 +44,8 @@ class YouTubeResult extends AbstractResult
         return $this->embed;
     }
 
-    public function setEmbed(string $id): AbstractResult
+    public function setEmbed(string $embed): AbstractResult
     {
-        $embed = "<iframe width='560' height='315' src='https://www.youtube.com/embed/{$id}' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>";
-
         $this->embed = $embed;
     
         return $this;

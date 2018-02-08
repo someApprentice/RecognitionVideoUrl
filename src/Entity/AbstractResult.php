@@ -13,7 +13,7 @@ abstract class AbstractResult
 
     abstract public function getEmbed(): string;
 
-    abstract public function setEmbed(string $id): AbstractResult;
+    abstract public function setEmbed(string $data): AbstractResult;
 
     abstract public function getPreview(): string;
 

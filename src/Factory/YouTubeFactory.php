@@ -27,7 +27,7 @@ class YouTubeFactory extends AbstractFactory
     {
         $matches = [];
 
-        if (preg_match('/src=\"(https?:\/\/)?(www\.)?youtube\.com\/embed\/([\w\d]{11})\"/', $embed, $matches)) {
+        if (preg_match('/src=\"(https?:\/\/)?(www\.)?youtube\.com\/embed\/([\w\d]{11})\"/i', $embed, $matches)) {
             $id = $matches[3];
 
             $url = new YouTubeURL();
