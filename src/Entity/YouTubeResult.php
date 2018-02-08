@@ -82,18 +82,18 @@ class YouTubeResult extends AbstractResult
         return $this;
     }
 
-    public function json(array $optional): string
+    public function json(array $optional = []): string
     {
         $json = [];
 
         if (empty($this->errors)) {
             $json['title'] = $this->title;
 
-            if (!is_null($optional['description'])) {
+            if (isset($optional['description']) and !is_null($optional['description'])) {
                 $json['description'] = $this->description;
             }
 
-            if (!is_null($optional['preview'])) {
+            if (isset($optional['preview']) and !is_null($optional['preview'])) {
                 $json['preview'] = $this->preview;
             }
 

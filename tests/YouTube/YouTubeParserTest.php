@@ -9,7 +9,7 @@ final class YouTubeParserTest extends TestCase
 {
     public function testYouTubeParse(): void
     {
-        $options = parse_ini_file(__DIR__ . '/../config/hosting_options.ini', true)['YouTube'];
+        $options = parse_ini_file(__DIR__ . '/../../config/hosting_options.ini', true)['YouTube'];
 
         $parser = new YouTubeParser($options);
 

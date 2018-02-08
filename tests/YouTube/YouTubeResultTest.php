@@ -23,7 +23,7 @@ final class YouTubeResultTest extends TestCase
         $result->setPreview($data['preview']);
         $result->setEmbed('KRrNST9OAcA');
 
-        $json = json_decode($result->json(), true, 512, \JSON_OBJECT_AS_ARRAY);
+        $json = json_decode($result->json(['description' => 'On', 'preview' => 'On']), true, 512, \JSON_OBJECT_AS_ARRAY);
 
         $this->assertArraySubset($data, $json);
     }
