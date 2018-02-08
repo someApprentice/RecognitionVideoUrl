@@ -89,11 +89,11 @@ class YouTubeResult extends AbstractResult
         if (empty($this->errors)) {
             $json['title'] = $this->title;
 
-            if (array_key_exists('description', $optional)) {
+            if (!is_null($optional['description'])) {
                 $json['description'] = $this->description;
             }
 
-            if (array_key_exists('preview', $optional) {
+            if (!is_null($optional['preview'])) {
                 $json['preview'] = $this->preview;
             }
 

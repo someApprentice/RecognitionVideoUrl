@@ -1,3 +1,7 @@
 index:
    path: /
    controller: RecognitionVideoUrl\Controller\RecognitionController::run
+
+api:
+  path: /api/
+  controller: RecognitionVideoUrl\Controller\RecognitionController::api
