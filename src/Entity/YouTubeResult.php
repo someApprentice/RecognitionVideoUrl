@@ -82,19 +82,26 @@ class YouTubeResult extends AbstractResult
         return $this;
     }
 
-    public function json(): string
+    public function json(array $optional): string
     {
+        $json = [];
+
         if (empty($this->errors)) {
-            $array = [
-                'title' => $this->title,
-                'description' => $this->description,
-                'preview' => $this->preview,
-                'embed' => $this->embed,
-            ];
+            $json['title'] = $this->title;
+
+            if (array_key_exists('description', $optional)) {
+                $json['description'] = $this->description;
+            }
+
+            if (array_key_exists('preview', $optional) {
+                $json['preview'] = $this->preview;
+            }
+
+            $json['embed'] = $this->embed;
         } else {
-            $array = $this->errors;
+            $json = $this->errors;
         }
 
-        return json_encode($array, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES);
+        return json_encode($json, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES);
     }
 }

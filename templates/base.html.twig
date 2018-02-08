@@ -9,7 +9,7 @@
         <form method="POST" action="/">
             <input type="text" {% if data is defined %}value="{{ data }}"{% endif %} name="data">
 
-            <input type="submit" name="submit"> {% if error is defined %}<em style="color: red;">{{ error }}</em>{% endif %}
+            <input type="submit" name="submit"><input type="checkbox" name="description">Description <input type="checkbox" name="preview">Preview {% if error is defined %}<em style="color: red;">{{ error }}</em>{% endif %}
         </form>
 
     </body>

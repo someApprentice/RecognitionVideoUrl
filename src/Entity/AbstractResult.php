@@ -23,5 +23,5 @@ abstract class AbstractResult
 
     abstract public function setErrors(array $errors = []): AbstractResult;
 
-    abstract public function json(): string;
+    abstract public function json(array $optional): string;
 }

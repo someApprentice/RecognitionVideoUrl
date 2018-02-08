@@ -14,6 +14,10 @@ class RecognitionController extends Controller
     {
         $data = $request->request->get('data');
 
+        $description = $request->request->get('description');
+
+        $preview = $request->request->get('preview');
+
         if ($data) {
             $identification = $collection->identifyData($data);
 
@@ -32,11 +36,27 @@ class RecognitionController extends Controller
                     return $this->render('/base.html.twig', array('data' => $data, 'error' => "Data doesn't match pattern"));
             }
 
+            $optional = [];
+
+            if ($description) {
+                $optional['description'] = $description;
+            }
+
+            if ($preview) {
+                $optional['preview'] = $preview;
+            }
+
             $parser = $collection->getCollection()[$identification['hosting']]['parser'];
 
             $result = $parser->parse($url);
 
-            $response = JsonResponse::fromJsonString($result->json());
+            $json = $result->json($optional);
+
+            if (isset($json['error']) and $json['error'] == 'Nothing found') {
+                $response = JsonResponse::fromJsonString($json, 404);
+            } else {
+                $response = JsonResponse::fromJsonString($json);
+            }
 
             return $response;
         }

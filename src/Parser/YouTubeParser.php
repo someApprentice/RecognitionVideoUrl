@@ -41,7 +41,7 @@ class YouTubeParser implements ParserInterface
                     $result->setPreview($json['items'][0]['snippet']['thumbnails']['default']['url']);
                     $result->setEmbed($url->getId());
                 } else {
-                    $result->setErrors(['result' => 'Nothing found']);
+                    $result->setErrors(['error' => 'Nothing found']);
                 }
 
                 return $result;
