@@ -1,14 +1,14 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-use RecognitionVideoUrl\HostingCollection;
+use RecognitionVideoUrl\CheckerCollection;
 
 
 final class YouTubeCollectionIdentificationTest extends TestCase
 {
     public function testURLChecking(): void
     {
-        $collection = new HostingCollection();
+        $collection = new CheckerCollection();
 
         $link = "https://youtu.be/KRrNST9OAcA";
 

@@ -1,7 +1,8 @@
 <?php
 namespace RecognitionVideoUrl\Controller;
 
-use RecognitionVideoUrl\HostingCollection;
+use RecognitionVideoUrl\CheckerCollection;
+use RecognitionVideoUrl\Recognizer;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,8 +11,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class RecognitionController extends Controller
 {
-    public function run(Request $request, HostingCollection $collection)
+    public function run(Request $request)
     {
+        $collection = $this->container->get(CheckerCollection::class);
+
         $data = $request->request->get('data');
 
         $optional = [
@@ -20,26 +23,13 @@ class RecognitionController extends Controller
         ];
 
         if ($data) {
-            $identification = $collection->identifyData($data);
+            $recognizer = new Recognizer($collection);
 
-            switch ($identification['type']) {
-                case "URL":
-                    $url = $collection->getCollection()[$identification['hosting']]['factory']->createEntityFromURL($data);
+            $result = $recognizer->parse($data);
 
-                    break;
-
-                case "embed":
-                    $url = $collection->getCollection()[$identification['hosting']]['factory']->createEntityFromEmbed($data);
-
-                    break;
-
-                default:
-                    return $this->render('/base.html.twig', array('data' => $data, 'error' => "Data doesn't match pattern"));
+            if (is_array($result) and $result['error'] == "Data doesn't match pattern") {
+                return $this->render('/base.html.twig', array('data' => $result['data'], 'error' => $result['error']));
             }
-
-            $parser = $collection->getCollection()[$identification['hosting']]['parser'];
-
-            $result = $parser->parse($url);
 
             $json = $result->json($optional);
 
@@ -55,8 +45,10 @@ class RecognitionController extends Controller
        return $this->render('/base.html.twig', array());
     }
 
-    public function api(Request $request, HostingCollection $collection)
+    public function api(Request $request)
     {
+        $collection = $this->container->get(CheckerCollection::class);
+
         $data = $request->query->get('data');
 
         $optional = [
@@ -65,26 +57,13 @@ class RecognitionController extends Controller
         ];
 
         if ($data) {
-            $identification = $collection->identifyData($data);
+            $recognizer = new Recognizer($collection);
 
-            switch ($identification['type']) {
-                case "URL":
-                    $url = $collection->getCollection()[$identification['hosting']]['factory']->createEntityFromURL($data);
+            $result = $recognizer->parse($data);
 
-                    break;
-
-                case "embed":
-                    $url = $collection->getCollection()[$identification['hosting']]['factory']->createEntityFromEmbed($data);
-
-                    break;
-
-                default:
-                    return $this->json(['data' => $data, 'error' => "Data doesn't match pattern"], 400);
+            if (is_array($result) and $result['error'] == "Data doesn't match pattern") {
+                return $this->json(['data' => $result['data'], 'error' => $result['error']], 400);;
             }
-
-            $parser = $collection->getCollection()[$identification['hosting']]['parser'];
-
-            $result = $parser->parse($url);
 
             $json = $result->json($optional);
 
@@ -97,6 +76,6 @@ class RecognitionController extends Controller
             return $response;
         }
 
-        return $this->json(['error' => "No requset"], 204);       
+        return $this->json(['error' => "No requset"], 204);  
     }
 }
