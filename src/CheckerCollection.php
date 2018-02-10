@@ -7,10 +7,17 @@ class CheckerCollection
 {
     protected $collection = [];
 
-    public function __construct()
+    public function __construct(iterable $checkers)
     {
-        $this->set('YouTube', new \RecognitionVideoUrl\Checker\YouTubeChecker());
-        $this->set('Vimeo', new \RecognitionVideoUrl\Checker\VimeoChecker());
+        foreach ($checkers as $checker) {
+            $matches = [];
+
+            if (preg_match('/RecognitionVideoUrl\\\\Checker\\\\(\w+)Checker/', get_class($checker), $matches)) {
+                $key = $matches[1];
+
+                $this->set($key, $checker);
+            }
+        }
     }
 
     public function set(string $key, CheckerInterface $checker): CheckerCollection

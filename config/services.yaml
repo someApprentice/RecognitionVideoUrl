@@ -26,5 +26,13 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    RecognitionVideoUrl\Checker\YouTubeChecker:
+        tags: [checker]
+
+    RecognitionVideoUrl\Checker\VimeoChecker:
+        tags: [checker]
+
     RecognitionVideoUrl\CheckerCollection:
-        public: true;
+        public: true
+
+        arguments: [!tagged checker]

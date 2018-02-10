@@ -26,7 +26,7 @@ You also have to make checkURL(...) and checkEmbed(...) methods return an array 
 3. ParserInterface
 4. AbstractResult
 
-And add your new Checker(s) in `RecognitionVideoUrl\CheckerCollection` constructor or with method `set(string $key, CheckerInterface  $checker)` in wherever you pleased
+Tag your new Checker(s) in a `config/services.yaml` file or with a method `set(string $key, CheckerInterface  $checker)` in wherever you pleased
 
 ## Tests
 Just simple run `'vendor/bin/phpunit'` in your console
